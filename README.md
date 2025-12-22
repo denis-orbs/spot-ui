@@ -11,7 +11,6 @@ A monorepo containing the Spot SDK, UI components, and a demo web application.
 | `web` | Next.js demo app for local testing | ❌ Private |
 
 ## Getting Started
-
 ### Prerequisites
 
 - Node.js 18+
