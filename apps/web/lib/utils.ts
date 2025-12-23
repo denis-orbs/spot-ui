@@ -12,6 +12,7 @@ import {
   POPULAR_TOKENS,
 } from "./consts";
 import * as chains from "viem/chains";
+import { Partners } from "@orbs-network/spot-ui";
 
 export const getBaseCurrencies = (chainId?: number) => {
   return POPULAR_TOKENS[chainId as keyof typeof POPULAR_TOKENS] ?? [];
@@ -233,3 +234,38 @@ export const toAmountUI  = (value?: string, decimals?: number) => {
   if (!decimals || !value) return "0";
   return formatUnits(BigInt(value), decimals);
 }
+
+
+
+
+
+export const getSpotPartnerDemoLink = (partner?: string) => {
+  if (!partner) return undefined;
+  switch (partner) {
+    case Partners.Spooky:
+      return "https://spookyswap-v2.netlify.app/#/swap/twap";
+    case Partners.Thena:
+      return "https://thena-frontend-mu.vercel.app/swap?inputCurrency=BNB&outputCurrency=0xf4c8e32eadec4bfe97e0f595add0f4450a863a11&swapType=2";
+    case Partners.Lynex:
+      return "https://defi-zoo-frontend-3pc5.vercel.app/swap?inputCurrency=ETH&outputCurrency=0x1a51b19CE03dbE0Cb44C1528E34a7EDD7771E9Af&swapType=2";
+    case Partners.Nami:
+      return "https://nami-dex.vercel.app/swap";
+    case Partners.Quick:
+      return "http://198.20.104.22:4000/swap/twap/ETH/0xc2132D05D31c914a87C6611C10748AEb04B58e8F?chainId=137";
+    case Partners.Yowie:
+      return "https://yowie-spot.netlify.app/twap";
+  }
+};
+
+export const getSpotPartnerProdLink = (partner?: string) => {
+  if (!partner) return undefined;
+  switch (partner) {
+    case Partners.Spooky:
+      return "https://spooky.fi/#/swap/twap";
+    case Partners.Thena:
+      return "https://thena.fi/swap?inputCurrency=BNB&outputCurrency=0xf4c8e32eadec4bfe97e0f595add0f4450a863a11&swapType=2";
+    default:
+      return undefined;
+  }
+};
+

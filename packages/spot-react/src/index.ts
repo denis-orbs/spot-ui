@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { setUIVersion } from "@orbs-network/spot-ui";
 import { useTwapStore } from "./useTwapStore";
 import pkg from "../package.json";
-import { SpotProvider } from "./spot-context.tsx";
+import { SpotProvider } from "./spot-context";
 import { DISCLAIMER_URL, ORBS_LOGO, ORBS_WEBSITE_URL, DEFAULT_DURATION_OPTIONS } from "./consts";
 import { Orders } from "./components/orders/orders";
 import { useTradesPanel } from "./hooks/use-trades";
@@ -17,7 +17,7 @@ import { useDstTokenPanel, useSrcTokenPanel } from "./hooks/use-token-panel";
 import { useLimitPricePanel } from "./hooks/use-limit-price";
 import { useInvertTradePanel } from "./hooks/use-invert-trade-panel";
 import { useInputErrors } from "./hooks/use-input-errors";
-import { useBuildRePermitOrderDataCallback } from "./hooks/use-build-repermit-order-data-callback.ts";
+import { useBuildRePermitOrderDataCallback } from "./hooks/use-build-repermit-order-data-callback";
 import { useTogglePricePanel } from "./hooks/use-toggle-price";
 import { SubmitOrderPanel } from "./components/submit-order-panel";
 

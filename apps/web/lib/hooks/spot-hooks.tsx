@@ -226,9 +226,9 @@ export const useSpotPartner = () => {
         return Partners.Lynex;
       default:
         return (
-          getPartners().find((p) => p.chainId === chainId)?.partner ||
+          getPartners().find((p) => p.chainId === chainId)?.name ||
           DEFAULT_PARTNER
-        );
+        ) as Partners;
     }
   }, [chainId, partner]);
 };

@@ -11,6 +11,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    
     const balances = await getBalances(Number(chainId), address, tokens);
     return NextResponse.json(balances);
   } catch (error) {

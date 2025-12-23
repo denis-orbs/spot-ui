@@ -1,5 +1,4 @@
 import { EIP712_TYPES, REPERMIT_PRIMARY_TYPE } from "./consts";
-import { getPartners, PartnerPayloadItem } from "./lib";
 
 export type Config = {
   chainName: string;

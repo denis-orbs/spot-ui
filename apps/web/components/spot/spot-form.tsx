@@ -40,7 +40,7 @@ import { ToggleCurrencies } from "../toggle-currencies";
 import { cn } from "@/lib/utils";
 import { NumericInput } from "../ui/numeric-input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { AlertTriangleIcon, ArrowLeftRightIcon, InfoIcon } from "lucide-react";
+import { AlertTriangleIcon, ArrowLeftRightIcon, InfoIcon, Link, Link2, LinkIcon } from "lucide-react";
 import { useUSDPrice } from "@/lib/hooks/use-usd-price";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Switch } from "../ui/switch";
@@ -64,6 +64,9 @@ import {
 } from "./components";
 import { SpotsOrders } from "./orders";
 import { useSwapParams } from "@/lib/hooks/use-swap-params";
+import { SpotFooter } from "./footer";
+
+
 
 const { useCallbacks } = SpotHooks;
 const Context = createContext<{
@@ -620,6 +623,9 @@ const Prices = () => {
   );
 };
 
+
+
+
 export function SpotForm({ swapType }: { swapType: SwapType }) {
   const { inputCurrency, outputCurrency } = useDerivedSwap();
   const { chainId, address } = useConnection();
@@ -682,6 +688,7 @@ export function SpotForm({ swapType }: { swapType: SwapType }) {
           </Portal>
         </Spot>
         <Listener />
+        <SpotFooter />
       </FormContainer>
     </Context.Provider>
   );

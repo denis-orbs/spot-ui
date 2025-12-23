@@ -295,10 +295,8 @@ export const getConfig = (
 
 export type PartnerPayloadItem = {
   chainId: number;
-  partner: string;
-  type: string;
-  adapter: string;
-  fee: string;
+  name: string;
+  config: SpotConfig | undefined;
 };
 
 export const getPartners = (): PartnerPayloadItem[] => {
@@ -310,13 +308,14 @@ export const getPartners = (): PartnerPayloadItem[] => {
       const dex = chainCfg?.dex;
       if (!dex || typeof dex !== "object") return [];
 
-      return Object.entries(dex).map(([partner, cfg]) => ({
+      return Object.entries(dex).map(([name]) => ({
         chainId:Number(chainId),
-        partner,
-        ...(cfg as Omit<PartnerPayloadItem, "chainId" | "partner">),
+        name: name,
+        config: getConfig(Number(chainId), name as Partners),
       }));
     })
-    .sort((a, b) => a.partner.localeCompare(b.partner));
+    .sort((a, b) => a.name.localeCompare(b.name));
 };
+
 
 

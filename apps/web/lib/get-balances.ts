@@ -9,7 +9,7 @@ export const getBalances = async (
   address: string,
   tokens: string[]
 ): Promise<Balances> => {
-  const tokensWithoutNative = tokens.filter((token) => !isNativeAddress(token));
+  const tokensWithoutNative = tokens.filter((token) => !isNativeAddress(token));  
   try {
     const publicClient = getPublicClient(chainId);
     const balances = await publicClient.multicall({

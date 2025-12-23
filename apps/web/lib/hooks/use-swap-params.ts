@@ -49,10 +49,10 @@ export const useSwapParams = () => {
       return undefined
     }
     const p = partners.find((it) => {
-      const value = `${it.partner}_${it.chainId}`;            
+      const value = `${it.name}_${it.chainId}`;            
       return value === partner
     });
-    return p ? `${p.partner}_${p.chainId}` : `${DEFAULT_PARTNER}_${DEFAULT_CHAIN_ID}`;
+    return p ? `${p.name}_${p.chainId}` : `${DEFAULT_PARTNER}_${DEFAULT_CHAIN_ID}`;
   }, [partner]);
 
   return {
