@@ -13,6 +13,8 @@ A monorepo containing the Spot SDK, UI components, and a demo web application.
 ## Getting Started
 ### Prerequisites
 
+
+
 - Node.js 18+
 - pnpm 9+
 
