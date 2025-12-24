@@ -40,7 +40,7 @@ import { ToggleCurrencies } from "../toggle-currencies";
 import { cn } from "@/lib/utils";
 import { NumericInput } from "../ui/numeric-input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { AlertTriangleIcon, ArrowLeftRightIcon, InfoIcon, Link, Link2, LinkIcon } from "lucide-react";
+import { AlertTriangleIcon, ArrowLeftRightIcon, InfoIcon } from "lucide-react";
 import { useUSDPrice } from "@/lib/hooks/use-usd-price";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Switch } from "../ui/switch";

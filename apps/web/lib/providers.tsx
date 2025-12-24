@@ -7,7 +7,8 @@ import { WagmiProvider } from "wagmi";
 import { QueryProvider } from "./query-provider";
 
 import { Spinner } from "@/components/ui/spinner";
-import { AppProvider } from "./context";
+import dynamic from "next/dynamic";
+const AppProvider = dynamic(() => import("./context").then((mod) => mod.AppProvider), { ssr: false });
 
 const queryClient = new QueryClient();
 

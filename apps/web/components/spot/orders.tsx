@@ -70,7 +70,7 @@ export const SpotsOrders = () => {
         </Dialog>
   
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <Button
               size="icon"
               onClick={() => setOpen(true)}
