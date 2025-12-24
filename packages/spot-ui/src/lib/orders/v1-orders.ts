@@ -210,11 +210,12 @@ const getCreatedOrdersFilters = (filters?: GetOrdersFilters) => {
   const outTokenAddresses = normalizeSubgraphList(filters.outTokenAddresses, (a) => `"${a.toLowerCase()}"`);
   const transactionHashes = normalizeSubgraphList(filters.transactionHashes, (h) => `"${h.toLowerCase()}"`);
   const orderIds = normalizeSubgraphList(filters.orderIds, (id) => `"${id}"`);
-  const twapAddresses = normalizeSubgraphList(
+  const twapAddresses =exchanges?.length ? '' : normalizeSubgraphList(
     filters.configs?.map((c) => c.twapAddress),
     (a) => `"${a.toLowerCase()}"`,
   );
   const minDollarValueIn = filters.minDollarValueIn;
+  
 
   return [
     exchanges ? `exchange_in: [${exchanges.join(", ")}]` : "",

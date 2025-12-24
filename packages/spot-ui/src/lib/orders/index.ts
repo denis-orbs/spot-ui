@@ -18,6 +18,7 @@ export const getAccountOrders = async ({
   config?: Config;
   account: string;
 }): Promise<Order[]> => {
+  
   const allOrders = await Promise.all([
     !config ? Promise.resolve([]) : getV1Orders({ chainId, signal, page, limit, filters: { accounts: [account], configs: [config] } }),
     getV2Orders({ chainId, signal, account }),

@@ -31,7 +31,7 @@ const ConfigDialog = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>
             <p className="capitalize"> Config</p>
         </Button>

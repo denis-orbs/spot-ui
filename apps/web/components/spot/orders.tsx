@@ -14,6 +14,7 @@ export const SpotsOrders = () => {
       statuses,
       selectedStatus,
       onHideSelectedOrder,
+      orders,
     } = useOrderHistoryPanel();
     const [open, setOpen] = useState(false);
   
@@ -55,7 +56,7 @@ export const SpotsOrders = () => {
                   <ArrowLeftIcon className="size-4" />
                 </Button>
               )}
-              <DialogTitle>{selectedOrder?.title ?? "Orders"}</DialogTitle>
+              <DialogTitle>{selectedOrder?.title ?? `Orders (${orders.all?.length})`}</DialogTitle>
             </DialogHeader>
             {!selectedOrder && (
               <SpotSelectMenu

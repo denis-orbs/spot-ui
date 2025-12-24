@@ -2,10 +2,19 @@ import Configs from "@orbs-network/twap/configs.json";
 import { networks } from "./networks";
 import { Config, TimeDuration, TimeUnit } from "./types";
 import { getQueryParam } from "./utils";
+
 const DEV_API_URL = "https://order-sink-dev.orbs.network";
 const PROD_API_URL = "https://order-sink.orbs.network";
 
+// Runtime mode configuration - can be set by consuming apps
+let _runtimeMode: "prod" | "dev" | undefined;
+
+export const setApiMode = (mode: "prod" | "dev") => {
+  _runtimeMode = mode;
+};
+
 export const getApiEndpoint = () => {
+  // 1. Query param override (highest priority, for testing)
   const env = getQueryParam(QUERY_PARAMS.ENV);
   if (env === "prod") {
     return PROD_API_URL;
@@ -14,14 +23,15 @@ export const getApiEndpoint = () => {
     return DEV_API_URL;
   }
 
-  if (process.env.NEXT_PUBLIC_MODE === "prod") {
+  // 2. Runtime configuration (set via setApiMode)
+  if (_runtimeMode === "prod") {
     return PROD_API_URL;
   }
-
-  if (process.env.NEXT_PUBLIC_MODE === "dev") {
+  if (_runtimeMode === "dev") {
     return DEV_API_URL;
   }
 
+  // 3. Default to production
   return PROD_API_URL;
 };
 export const SUGGEST_CHUNK_VALUE = 100;

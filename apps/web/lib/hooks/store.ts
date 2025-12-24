@@ -3,12 +3,15 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { SwapStep } from "../types";
 import { DEFAULT_PRICE_PROTECTION, DEFAULT_SLIPPAGE } from "../consts";
+import { useEffect } from "react";
 
 type UserStore = {
   slippage: number;
   setSlippage: (slippage: number) => void;
   priceProtection: number;
   setPriceProtection: (priceProtection: number) => void;
+  _hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
 };
 
 export const useUserStore = create<UserStore>()(
@@ -18,13 +21,27 @@ export const useUserStore = create<UserStore>()(
       priceProtection: DEFAULT_PRICE_PROTECTION,
       setSlippage: (slippage: number) => set({ slippage }),
       setPriceProtection: (priceProtection: number) => set({ priceProtection }),
+      _hasHydrated: false,
+      setHasHydrated: (state: boolean) => set({ _hasHydrated: state }),
     }),
     {
       name: "swap-store",
       storage: createJSONStorage(() => localStorage),
+      // Skip automatic hydration to prevent SSR mismatch
+      skipHydration: true,
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
     }
   )
 );
+
+// Hook to handle hydration - call this in your root component
+export const useHydrateStores = () => {
+  useEffect(() => {
+    useUserStore.persist.rehydrate();
+  }, []);
+};
 
 type SwapStore = {
   inputAmount: string;
